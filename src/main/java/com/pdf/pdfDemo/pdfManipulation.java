@@ -18,29 +18,35 @@ public class pdfManipulation {
     public static void main(String[] args) throws IOException {
         pdfManipulation obj = new pdfManipulation();
         Scanner sc = new Scanner(System.in);
-        System.out.println("PDF Handling in Java :- ");
-        System.out.println("1. Create a empty PDF!");
-        System.out.println("2. Load PDF and add pages!");
-        System.out.println("3. Add text in PDF!");
-        System.out.println("4. Get all text from PDF!");
-        System.out.print("Enter the desired option number :-");
-        int choice = sc.nextInt();
-        switch (choice){
-            case 1:
-                obj.emptyPdf();
-                break;
-            case 2:
-                obj.loadExistingPdf();
-                break;
-            case 3:
-                obj.addTextInPdf();
-                break;
-            case 4:
-                obj.getAllText();
-                break;
-            default:
-                System.out.println("Invalid Option!");
-        }
+        int usrChoice = 1;
+        do {
+            System.out.println("PDF Handling in Java :- ");
+            System.out.println("1. Create a empty PDF!");
+            System.out.println("2. Load PDF and add pages!");
+            System.out.println("3. Add text in PDF!");
+            System.out.println("4. Get all text from PDF!");
+            System.out.print("Enter the desired option number :-");
+            int choice = sc.nextInt();
+            switch (choice){
+                case 1:
+                    obj.emptyPdf();
+                    break;
+                case 2:
+                    obj.loadExistingPdf();
+                    break;
+                case 3:
+                    obj.addTextInPdf();
+                    break;
+                case 4:
+                    obj.getAllText();
+                    break;
+                default:
+                    System.out.println("Invalid Option!");
+            }
+            System.out.println("Do you want to continue (1 = Yes, 0 = No) ");
+            usrChoice = sc.nextInt();
+        }while (usrChoice == 1);
+        System.out.println("Program Exited!");
     }
 
     void emptyPdf() throws IOException {
