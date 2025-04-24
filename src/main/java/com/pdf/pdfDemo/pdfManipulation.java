@@ -79,17 +79,21 @@ public class pdfManipulation {
 
         PDPage page = document.getPage(0);
 
-        PDPageContentStream content = new PDPageContentStream(document, page);
+        PDPageContentStream content = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true, true);
 
         content.beginText();
-        content.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD), 12);
-        content.newLineAtOffset(25,500);
+        content.setFont(new PDType1Font(Standard14Fonts.FontName.TIMES_BOLD), 24);
+        content.newLineAtOffset(72,700);
 
-        String text = "This is inserted through library!";
+        String text = "Hello World form Apache PDFbox";
 
         content.showText(text);
         content.endText();
-        System.out.println("Content Added");
+        content.close();
+
+        document.save("addTextInPdf.pdf");
+        document.close();
+        System.out.println("Content Added :- 'addTextInPdf.pdf' ");
     }
     void getAllText() throws IOException {
         File file = new File("samplePdf.pdf");
