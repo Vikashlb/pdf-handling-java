@@ -7,6 +7,7 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
@@ -25,6 +26,7 @@ public class pdfManipulation {
             System.out.println("2. Load PDF and add pages!");
             System.out.println("3. Add text in PDF!");
             System.out.println("4. Get all text from PDF!");
+            System.out.println("5. Add an image to PDF!");
             System.out.print("Enter the desired option number :-");
             int choice = sc.nextInt();
             switch (choice){
@@ -39,6 +41,9 @@ public class pdfManipulation {
                     break;
                 case 4:
                     obj.getAllText();
+                    break;
+                case 5:
+                    obj.addImageInPdf();
                     break;
                 default:
                     System.out.println("Invalid Option!");
@@ -104,5 +109,20 @@ public class pdfManipulation {
         document.close();
 
         System.out.println(textFromPdf);
+    }
+    void addImageInPdf() throws IOException {
+        emptyPdf();
+        File file = new File("emptyPdf.pdf");
+        PDDocument document = Loader.loadPDF(file);
+        PDPage page = document.getPage(0);
+
+        PDImageXObject pdImage = PDImageXObject.createFromFile("devon-logo-blue.png", document);
+
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        contentStream.drawImage(pdImage, 72, 650);
+        contentStream.close();
+        document.save("addImageInPdf.pdf");
+        document.close();
+        System.out.println("PDF successfully created :- 'addImageInPdf.pdf' ");
     }
 }
