@@ -1,0 +1,7 @@
+1) Create an EC2 instance (Create Key-Pair)
+2) Add Security Group (Allow inbound SSH-22 and Custom TCP-8080)
+3) Open PowerShell - connect to instance using ( ssh -i StudentAppKey.pem ec2-user@<public-dns> )
+4) Install Java - ( sudo dnf install java-23-amazon-corretto )
+5) Close connection and use scp to upload file ( scp -i StudentAppKey.pem StudentAppBackend.jar ec2-user@<your-ec2-ip>:/home/ec2-user/ )
+6) Run springboot application (java -jar StudentAppBackend.jar)
+7) Use Public DNS with apipath
